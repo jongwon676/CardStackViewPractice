@@ -13,15 +13,14 @@ class CardLayout: UICollectionViewFlowLayout {
     private let panGestureRecognizer = UIPanGestureRecognizer()
     private let maxOffsetThresholdPercentage: CGFloat = 0.3
     weak var delegate: CardLayoutProtocol?
+    
     struct AnimationStuff {
-        
         var startY: CGFloat
         var endY: CGFloat
         var startAlpha: CGFloat
         var endAlpha: CGFloat
         var startScale: CGFloat
         var endScale: CGFloat
-        
     }
     
     
@@ -40,8 +39,6 @@ class CardLayout: UICollectionViewFlowLayout {
             let startAlpha = animationStuffs[order].startAlpha
             let startScale = animationStuffs[order].startScale
             let startYOffset = animationStuffs[order].startY
-            
-            
             cell.alpha = startAlpha
             cell.transform = CGAffineTransform(scaleX: startScale, y: startScale).concatenating(.init(translationX: 0, y: startYOffset))
             
@@ -56,10 +53,8 @@ class CardLayout: UICollectionViewFlowLayout {
             let endYOffset = animationStuffs[order].endY
             cell.alpha = endAlpha
             cell.transform = CGAffineTransform(scaleX: endScale, y: endScale).concatenating(.init(translationX: 0, y: endYOffset))
-            
         }
     }
-    
     
     func getCellWithIndexPath(_ order: Int) -> (cell: UICollectionViewCell, indexPath: IndexPath)?{
         let count = collectionView?.numberOfItems(inSection: 0) ?? 0
